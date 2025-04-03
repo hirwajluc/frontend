@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lottery-ui
+spec:
+  replicas: 2  # Adjust the number of replicas based on your needs
+  selector:
+    matchLabels:
+      app: lottery-ui
+  template:
+    metadata:
+      labels:
+        app: lottery-ui
+    spec:
+      containers:
+      - name: lottery-ui
+        image: qonicsinc/lottery:1.0.15
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: qonicsinc-dockerhub
